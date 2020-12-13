@@ -4,17 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <title>News Blog - @yield('title')</title>
+    @yield('prestyle')
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{ url('assets/backend/plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ url('assets/backend/dist/css/adminlte.min.css') }}">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-    <!-- Toastr -->
-    <link rel="stylesheet" href="{{ url('assets/backend/plugins/toastr/toastr.min.css') }}">
-
+    <!-- custom CSS -->
+    <link rel="stylesheet" href="{{ url('assets/custom.css') }}">
     {{-- para el captcha --}}
     {!! NoCaptcha::renderJs() !!}
+    @yield('poststyle')
+
 </head>
 
 <body>
@@ -50,7 +52,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                         document.getElementById('logout-form').submit();">
+                                             document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
                         </a>
 
@@ -62,16 +64,16 @@
             </ul>
         @endauth
         @guest
-        <ul class="navbar-nav ml-auto">
-            <!-- Authentication Links -->
-            <li class="nav-item">
-            <a class="nav-link" href="{{ route('login') }}">Login</a>
-            </li>
+            <ul class="navbar-nav ml-auto">
+                <!-- Authentication Links -->
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('login') }}">Login</a>
+                </li>
 
-            {{-- <li class="nav-item">
-                <a class="nav-link" href="{{ route('register') }}">Register</a>
-            </li> --}}
-        </ul>
+                {{-- <li class="nav-item">
+                    <a class="nav-link" href="{{ route('register') }}">Register</a>
+                </li> --}}
+            </ul>
         @endguest
     </nav>
 
@@ -101,21 +103,20 @@
     <!-- Footer -->
 
 
+    <!-- REQUIRED SCRIPTS -->
+
+    @yield('prescript')
     <!-- jQuery -->
     <script src="{{ url('assets/backend/plugins/jquery/jquery.min.js') }}"></script>
     <!-- Bootstrap 4 -->
     <script src="{{ url('assets/backend/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ url('assets/backend/dist/js/adminlte.js') }}"></script>
-
-    <script src="{{ url('assets/backend/js/script.js?=' . uniqid()) }}"></script>
-    <!-- Toastr -->
-    <script src="{{ url('assets/backend/plugins/toastr/toastr.min.js') }}"></script>
+    @yield('postscript')
 
     @if (session()->get('op') == 'fallback')
         <script type="text/javascript">
             Command: toastr["info"]("You have been redirected to the main page", "Error 404 - Route not found")
-
         </script>
     @endif
 

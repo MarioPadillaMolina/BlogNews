@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-body">
                     <a href="{{ url()->previous() }}" class="btn btn-primary">Back</a>
-                    <a href="#" class="btn btn-primary">Show Posts</a>
+                    <a href="{{ route('posts.index') }}" class="btn btn-primary">Show Posts</a>
                 </div>
             </div>
         </div>
