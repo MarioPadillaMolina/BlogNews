@@ -21,6 +21,7 @@
                 </div>
             </div>
         @endforeach
-        {{ $posts->appends(['orderby' => 'id'])->onEachSide(2)->links() }}
+        
     </div>
+    <div class="row">{{ $posts->appends(['orderby' => 'id'])->onEachSide(2)->links() }}</div>
 @endsection

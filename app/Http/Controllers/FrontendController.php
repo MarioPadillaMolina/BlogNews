@@ -59,7 +59,7 @@ class FrontendController extends Controller
     public function author($id)
     {
         $author = User::find($id);
-        $posts = Post::where('user_id', $id)->orderBy('id', 'desc')->get();
+        $posts = Post::where('user_id', $id)->orderBy('id', 'desc')->paginate(3);
         return view('frontend.index', ['posts' => $posts, 'author' => $author]);
     }
 
